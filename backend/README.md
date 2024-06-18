@@ -4,11 +4,6 @@
 
 # Desafio para Vaga de Desenvolvedor FullStack na Empresa Cidade Alta
 
-![Dashboard do Aplicativo](./public/dashboard.png)
-
-![Login do Aplicativo](./public/login.png)
-
-
 ## Instalação e Inicialização do Backend
 
 Para iniciar o frontend do aplicativo em React, siga os passos abaixo:
