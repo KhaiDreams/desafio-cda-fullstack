@@ -1,0 +1,42 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id             Int          @id @default(autoincrement())
+  email          String?      @unique
+  username       String       @unique
+  verified_email Boolean      @default(false)
+  password       String?
+  fullname       String?
+  avatar         String       @default("https://firebasestorage.googleapis.com/v0/b/assets-portifolio.appspot.com/o/profle-Photoroom.png?alt=media&token=44c41a6d-d29a-4a54-ac95-50cc61c11c71")
+  points         Int?         @default(0)
+  deleted        Boolean      @default(false)
+  created_at     DateTime     @default(now())
+  UserEmblems    UserEmblem[]
+}
+
+model Emblem {
+  id         Int          @id @default(autoincrement())
+  slug       String
+  name       String
+  image      String
+  value      Int
+  category   String
+  created_at DateTime     @default(now())
+  UserEmblem UserEmblem[]
+}
+
+model UserEmblem {
+  id         Int      @id @default(autoincrement())
+  user_id    Int
+  user       User     @relation(fields: [user_id], references: [id])
+  emblem_id  Int
+  emblem     Emblem   @relation(fields: [emblem_id], references: [id])
+  created_at DateTime @default(now())
+}
